@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>E_pagination DEMO</title>
+	<style type="text/css">
+		.pagination { margin-bottom: 10px;margin-top: 10px;display: inline-block;}
+		.pagination > li { display: inline;}
+		.pagination > .disabled > a, 
+		.pagination > .disabled > a:focus, 
+		.pagination > .disabled > a:hover, 
+		.pagination > .disabled > span, 
+		.pagination > .disabled > span:focus, 
+		.pagination > .disabled > span:hover { background-color: #fff;border-color: #ddd;color: #bfbfbf;cursor: not-allowed;}
+		.pagination > li > a, .pagination > li > span, .pagination > li > s { background-color: #fff;border: 1px solid #ddd;color: #626262;float: left;line-height: 1.42857;margin-right: 5px;padding: 6px 12px;position: relative;text-decoration: none;}
+		.pagination > li > s { border: none;padding-left: 0;padding-right: 0;}
+		.pagination > .active > a, 
+		.pagination > .active > a:focus, 
+		.pagination > .active > a:hover, 
+		.pagination > .active > span, 
+		.pagination > .active > span:focus, 
+		.pagination > .active > span:hover { background-color: #f9be00;border-color: #f9be00;color: #fff;cursor: default;z-index: 2;}
+		.pagination > li > a:focus, 
+		.pagination > li > a:hover, 
+		.pagination > li > span:focus, 
+		.pagination > li > span:hover { background-color: #f9be00;border-color: #f9be00;color: #fff;z-index: 3;}
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="E_pagination.js"></script>
+</head>
+<body>	
+	<ul id="pagination" class="pagination"></ul>
+	<p id="result">第1页</p>
+</body>
+<script>
+let mockData = {
+	code:0,
+	content:[{page:0,	data:'第0页'},{	page:1,	data:'第1页'},{	page:2,	data:'第2页'},{	page:3,	data:'第3页'},{	page:4,	data:'第4页'},{	page:5,	data:'第5页'},{	page:6,	data:'第6页'},{	page:7,	data:'第7页'},{	page:8,	data:'第8页'},{	page:9,	data:'第9页'},{	page:10,	data:'第10页'},{page:11,	data:'第11页'},{page:12,	data:'第12页'}],
+	total:12
+};
+
+let option = {
+	size:2,
+	currentPage:1,
+	page:0
+};
+
+$('#pagination').E_pagination({
+    pageCount : Math.ceil(mockData.content.length / option.size),
+    current: option.currentPage,
+    callback : function(p){
+      $('#result').text(mockData.content[p].data);
+    }
+});
+</script>
+</html>
